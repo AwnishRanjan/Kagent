@@ -1,0 +1,27 @@
+# Kagent Essential Commands
+
+# Train ML model
+python tests/train_model.py
+
+# Run simple tests (no cluster required)
+python tests/test_all_agents.py
+
+# Create Kubernetes cluster
+kind create cluster --name kagent-cluster --config tests/kind-cluster.yaml
+
+# Deploy test application
+kubectl apply -f tests/test-deployment.yaml
+
+# Install Prometheus
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/prometheus
+
+# Generate load
+python tests/stress_test.py
+
+# Run comprehensive tests
+python tests/real_test_all_agents.py
+
+# Delete cluster when done
+kind delete cluster --name kagent-cluster 

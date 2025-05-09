@@ -1,0 +1,41 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="kagent",
+    version="0.1.0",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    include_package_data=True,
+    install_requires=[
+        "fastapi",
+        "uvicorn",
+        "pydantic",
+        "typer",
+        "rich",
+        "click",
+        "kubernetes>=12.0.0",
+        "opentelemetry-api",
+        "opentelemetry-sdk",
+        "opentelemetry-exporter-otlp",
+        "opentelemetry-instrumentation-httpx",
+        "opentelemetry-instrumentation-openai",
+        "httpx",
+        "jinja2",
+        "numpy",
+        "pandas",
+        "autogen-core",
+        "mcp",
+        "autogenstudio",
+        "prometheus-client",
+        "requests",
+        "PyYAML",
+        "scikit-learn>=1.0.0",
+        "joblib>=1.0.0",
+    ],
+    entry_points={
+        "console_scripts": [
+            "kagent=kagent.cli:run",
+        ],
+    },
+    python_requires=">=3.8",
+) 
