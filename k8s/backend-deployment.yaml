@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kagent-backend
+  labels:
+    app: kagent-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kagent-backend
+  template:
+    metadata:
+      labels:
+        app: kagent-backend
+    spec:
+      containers:
+      - name: kagent-backend
+        image: kagent-backend:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: KUBERNETES_SERVICE_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: KUBERNETES_SERVICE_PORT
+          value: "6443"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kagent-backend
+spec:
+  selector:
+    app: kagent-backend
+  ports:
+  - port: 8000
+    targetPort: 8000
+  type: ClusterIP 

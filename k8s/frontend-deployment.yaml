@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kagent-frontend
+  labels:
+    app: kagent-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kagent-frontend
+  template:
+    metadata:
+      labels:
+        app: kagent-frontend
+    spec:
+      containers:
+      - name: kagent-frontend
+        image: kagent-frontend:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://kagent-backend:8000"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kagent-frontend
+spec:
+  selector:
+    app: kagent-frontend
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: LoadBalancer 

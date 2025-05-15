@@ -13,22 +13,20 @@ import Settings from './pages/Settings';
 function App() {
   return (
     <Router>
-      <div className="flex h-screen bg-gray-100">
+      <div className="flex min-h-screen bg-gray-100">
         <Sidebar />
-        <div className="flex flex-col flex-1 overflow-hidden">
+        <div className="flex flex-col flex-1">
           <Navbar />
-          <main className="flex-1 overflow-y-auto bg-gray-50 p-4">
-            <div className="container mx-auto">
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/predictor" element={<PredictorAgent />} />
-                <Route path="/security" element={<SecurityScanner />} />
-                <Route path="/cost" element={<CostOptimizer />} />
-                <Route path="/backup" element={<BackupManager />} />
-                <Route path="/remediator" element={<RemediatorAgent />} />
-                <Route path="/settings" element={<Settings />} />
-              </Routes>
-            </div>
+          <main className="flex-1 overflow-y-auto bg-gray-50 p-4 pl-6">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/predictor" element={<PredictorAgent />} />
+              <Route path="/security" element={<SecurityScanner />} />
+              <Route path="/cost" element={<CostOptimizer />} />
+              <Route path="/backup" element={<BackupManager />} />
+              <Route path="/remediator" element={<RemediatorAgent />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
           </main>
         </div>
       </div>

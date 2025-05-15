@@ -14,8 +14,11 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 h-screen fixed left-0 top-0 pt-16 z-40">
+    <aside className="w-64 bg-white border-r border-gray-200 h-screen sticky left-0 top-0 z-10">
       <div className="overflow-y-auto py-4 px-3 h-full">
+        <div className="flex items-center mb-6 pl-2.5">
+          <span className="self-center text-xl font-semibold text-primary">Kagent</span>
+        </div>
         <ul className="space-y-2">
           {navItems.map((item, index) => (
             <li key={index}>
@@ -24,7 +27,7 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   `flex items-center p-2 text-base font-normal rounded-lg ${
                     isActive
-                      ? 'bg-primary text-white'
+                      ? 'bg-blue-500 text-white'
                       : 'text-gray-900 hover:bg-gray-100'
                   }`
                 }
